@@ -1,0 +1,9 @@
+{
+    "python.ythonPath": "venv/bin/python",
+    "code-runner.executorMap": {
+      "python": "python -u"
+    },
+    "emmet.includeLanguages": {
+      "django-html": "html"
+    }
+  }
