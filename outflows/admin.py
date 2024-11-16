@@ -7,4 +7,4 @@ class OutFlowAdmin(admin.ModelAdmin):
     search_fields = ('product__title',)
 
 
-admin.site.register(models.Outflows, OutFlowAdmin)
+admin.site.register(models.Outflow, OutFlowAdmin)
