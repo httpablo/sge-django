@@ -2,6 +2,8 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from . import forms
 from . import models
+from categories.models import Category
+from brands.models import Brand
 
 
 class ProductListView(ListView):
@@ -13,10 +15,29 @@ class ProductListView(ListView):
     def get_queryset(self) :
         query_set = super().get_queryset()
         title = self.request.GET.get('title')
+        serie_number = self.request.GET.get('serie_number')
+        category = self.request.GET.get('category')
+        brand = self.request.GET.get('brand')
 
         if title:
             query_set = query_set.filter(title__icontains=title)
+
+        if serie_number:
+            query_set = query_set.filter(serie_number__icontains=serie_number)
+
+        if category:
+            query_set = query_set.filter(category__id=category)
+
+        if brand:
+            query_set = query_set.filter(brand__id=brand)
+        
         return query_set
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        context['brands'] = Brand.objects.all()
+        return context
     
 
 class ProductCreateView(CreateView):
