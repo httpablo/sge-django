@@ -1,5 +1,6 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView
+from app import metrics
 from . import forms
 from . import models
 
@@ -18,7 +19,12 @@ class OutflowListView(ListView):
             query_set = query_set.filter(product__title__icontains=product)
         return query_set
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['sales_metrics'] = metrics.get_sales_metrics()
+        return context
 
+    
 class OutflowCreateView(CreateView):
     model = models.Outflow
     template_name = 'outflow_create.html'
