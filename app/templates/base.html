@@ -16,7 +16,9 @@
 
   <div class="container-fluid">
   
-  {% include 'components/_sidebar.html' %}
+  {% if user.is_authenticated %}
+    {% include 'components/_sidebar.html' %}
+  {% endif %}
 
       <div class="col py-3">
 
