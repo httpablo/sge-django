@@ -1,9 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
-from . import forms
 from app import metrics
-from . import models
+from . import models, forms
 from categories.models import Category
 from brands.models import Brand
 

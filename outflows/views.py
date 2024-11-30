@@ -2,8 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView
 from app import metrics
-from . import forms
-from . import models
+from . import models, forms
 
 
 class OutflowListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):

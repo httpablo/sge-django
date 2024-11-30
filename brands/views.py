@@ -18,7 +18,7 @@ class BrandListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
         if name:
             query_set = query_set.filter(name__icontains=name)
         return query_set
-    
+
 
 class BrandCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = models.Brand
