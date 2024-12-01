@@ -10,7 +10,7 @@ class OutflowListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     model = models.Outflow
     template_name = 'outflow_list.html'
     context_object_name = 'outflows'
-    paginate_by = 3
+    paginate_by = 5
     permission_required = 'outflows.view_outflow'
 
     def get_queryset(self):
