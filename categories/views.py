@@ -12,14 +12,14 @@ class CategoryListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     paginate_by = 3
     permission_required = 'categories.view_category'
 
-    def get_queryset(self) :
+    def get_queryset(self):
         query_set = super().get_queryset()
         name = self.request.GET.get('name')
 
         if name:
             query_set = query_set.filter(name__icontains=name)
         return query_set
-    
+
 
 class CategoryCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = models.Category

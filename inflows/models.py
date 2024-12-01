@@ -3,7 +3,6 @@ from suppliers.models import Supplier
 from products.models import Product
 
 
-
 class Inflow(models.Model):
     supplier = models.ForeignKey(Supplier, on_delete=models.PROTECT, related_name='inflow')
     product = models.ForeignKey(Product, on_delete=models.PROTECT, related_name='inflow')

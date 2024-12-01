@@ -13,14 +13,14 @@ class OutflowListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     paginate_by = 3
     permission_required = 'outflows.view_outflow'
 
-    def get_queryset(self) :
+    def get_queryset(self):
         query_set = super().get_queryset()
         product = self.request.GET.get('product')
 
         if product:
             query_set = query_set.filter(product__title__icontains=product)
         return query_set
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['sales_metrics'] = metrics.get_sales_metrics()

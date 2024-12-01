@@ -12,7 +12,7 @@ class BrandListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     paginate_by = 10
     permission_required = 'brands.view_brand'
 
-    def get_queryset(self) :
+    def get_queryset(self):
         query_set = super().get_queryset()
         name = self.request.GET.get('name')
 
