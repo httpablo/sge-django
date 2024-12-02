@@ -9,7 +9,7 @@ class InflowListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     model = models.Inflow
     template_name = 'inflow_list.html'
     context_object_name = 'inflows'
-    paginate_by = 3
+    paginate_by = 5
     permission_required = 'inflows.view_inflow'
 
     def get_queryset(self):

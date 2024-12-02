@@ -9,7 +9,7 @@ class SupplierListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     model = models.Supplier
     template_name = 'supplier_list.html'
     context_object_name = 'suppliers'
-    paginate_by = 3
+    paginate_by = 8
     permission_required = 'suppliers.view_supplier'
 
     def get_queryset(self):
