@@ -3,7 +3,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from app import metrics
-from . import models, forms, serializers
+from . import models, forms
+from products.serializers import ProductModelSerializer, ProductListDetailSerializer
 from categories.models import Category
 from brands.models import Brand
 
@@ -75,9 +76,17 @@ class ProductDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView)
 
 class ProductCreateListAPIView(generics.ListCreateAPIView):
     queryset = models.Product.objects.all()
-    serializer_class = serializers.ProductSerializer
+    
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return ProductListDetailSerializer
+        return ProductModelSerializer
 
 
 class ProductRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.Product.objects.all()
-    serializer_class = serializers.ProductSerializer
+   
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return ProductListDetailSerializer
+        return ProductModelSerializer
