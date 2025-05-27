@@ -2,6 +2,8 @@ services:
   
   sge_web:
     build: .
+    volumes:
+      - .:/sge
     restart: always
     ports:
       - "8000:8000"

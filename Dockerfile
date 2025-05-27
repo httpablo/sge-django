@@ -2,14 +2,13 @@ FROM python:3.13-alpine
 
 WORKDIR /sge
 
-# Impede criação de .pyc
+# Impede criação de .pyc e ativa logs imediatos
 ENV PYTHONDONTWRITEBYTECODE=1
-# Mostra logs na hora
 ENV PYTHONUNBUFFERED=1
 
-COPY . .
-
 RUN apk add --no-cache postgresql-dev gcc python3-dev musl-dev
+
+COPY requirements.txt .
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
