@@ -13,7 +13,9 @@ def home(request):
     daily_sales_quantity_data = metrics.get_daily_sales_quantity_data()
     graphic_product_category_metric = metrics.get_graphic_product_category_metric()
     graphic_product_brand_metric = metrics.get_graphic_product_brand_metric()
-    ai_result = AIResult.objects.first().result
+
+    ai_result_instance = AIResult.objects.first()
+    ai_result = ai_result_instance.result if ai_result_instance else "Nenhuma análise gerada ainda."
 
     context = {
         'product_metrics': product_metrics,
